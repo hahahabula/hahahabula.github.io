@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>S03.第一个Vim会话 | Wan_haha的笔记本</title><meta name="author" content="Wan_haha"><meta name="copyright" content="Wan_haha"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用指令vim打开vim编辑器 打开文档后将会处于普通模式，键入i进入插入模式 使用 Esc 退出编辑模式 在普通模式下 :wq &lt;filename&gt; 保存并退出Vim :q!: 退出Vim不保存文件    在某个界面下，双击空白处打开一个powershell窗口，该界面的路径将作为文件的存放地址   需要安装Listary软件       键入 vim test.txt 新建并打开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="S03.第一个Vim会话">
+<meta property="og:url" content="http://hahahabula.github.io/2024/11/09/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/index.html">
+<meta property="og:site_name" content="Wan_haha的笔记本">
+<meta property="og:description" content="使用指令vim打开vim编辑器 打开文档后将会处于普通模式，键入i进入插入模式 使用 Esc 退出编辑模式 在普通模式下 :wq &lt;filename&gt; 保存并退出Vim :q!: 退出Vim不保存文件    在某个界面下，双击空白处打开一个powershell窗口，该界面的路径将作为文件的存放地址   需要安装Listary软件       键入 vim test.txt 新建并打开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hahahabula.github.io/img/04_02.png">
+<meta property="article:published_time" content="2024-11-09T15:16:17.000Z">
+<meta property="article:modified_time" content="2024-11-09T15:20:46.272Z">
+<meta property="article:author" content="Wan_haha">
+<meta property="article:tag" content="兴趣">
+<meta property="article:tag" content="Vim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hahahabula.github.io/img/04_02.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://hahahabula.github.io/2024/11/09/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"这已经有","messageNext":"天未更新了，这篇文章的内容可能有部分已经过时。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Wan_haha","link":"链接: ","source":"来源: Wan_haha的笔记本","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'S03.第一个Vim会话',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-11-09 23:20:46',
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat|hide"></i><span> 影音</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/04_02.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/butterfly-icon.jpg" alt="Logo"><span class="site-name">Wan_haha的笔记本</span></a><a class="nav-page-title" href="/"><span class="site-name">S03.第一个Vim会话</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat|hide"></i><span> 影音</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">S03.第一个Vim会话</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-09T15:16:17.000Z" title="发表于 2024-11-09 23:16:17">2024-11-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-09T15:20:46.272Z" title="更新于 2024-11-09 23:20:46">2024-11-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/04%E5%85%B4%E8%B6%A3/">04兴趣</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/04%E5%85%B4%E8%B6%A3/02Vim/">02Vim</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>使用指令vim打开vim编辑器</li>
+<li>打开文档后将会处于普通模式，键入i进入插入模式</li>
+<li>使用 <code>Esc</code> 退出编辑模式</li>
+<li>在普通模式下 <code>:wq &lt;filename&gt;</code> 保存并退出Vim</li>
+<li><code>:q!</code>: 退出Vim不保存文件</li>
+</ul>
+<hr>
+<ol>
+<li>在某个界面下，双击空白处打开一个powershell窗口，该界面的路径将作为文件的存放地址</li>
+</ol>
+<blockquote>
+<p>需要安装Listary软件</p>
+</blockquote>
+  <img src="/img/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/image-20241109231806293.png" alt="image-20241109231806293" style="zoom:67%;" />
+
+<ol start="2">
+<li><p>键入 <code>vim test.txt</code> 新建并打开一个名为test的txt格式文档</p>
+<ul>
+<li>若无法识别vim命令可选择重启</li>
+</ul>
+</li>
+<li><p>将powershell的粘贴快捷键仅保留 <code>Ctrl+Shift+V</code>, 其余删除<br> <img src="/img/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/image-20241109231839163.png" alt="image-20241109231839163"></p>
+</li>
+<li><p>在所安装Vim目录下的vim配置文件中加入如下代码，保证Ctrl+V可以进行列块选择<br> <img src="/img/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/image-20241109232009847.png" alt="image-20241109232009847"></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&quot; 按键映射</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="symbol">&lt;C-V&gt;</span> <span class="symbol">&lt;C-V&gt;</span></span><br><span class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;C-V&gt;</span> <span class="symbol">&lt;C-O&gt;</span><span class="symbol">&lt;C-V&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>按 <code>i</code> 进入编辑模式，并将下列文字输入终端之中<br> pick e08be68 Add initial Rexfile<br> pick 5b4143f Fixes<br> pick 855be75 fix<br> pick d7a5285 Initial work<br> pick 59e82a2 add more stuff<br> pick 34cfc9c Fixes</p>
+</li>
+<li><p>按 <code>Esc</code> 进入普通模式，先将光标移到第二行的开始，而后再按 <code>Ctrl+V</code> 进入可视块模式，按三次 <code>l</code> 至pick单词尾部，而后再按 4 次 <code>j</code> 键移动至最后一行。</p>
+</li>
+<li><p>按 <code>c</code> 进入修改模式，再按 <code>s</code> ，而后 <code>Esc</code>，则所有的pick将会被替换为s。</p>
+ <img src="/img/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/image-20241109232036400.png" alt="image-20241109232036400" style="zoom:80%;" />
+ 这便完成了将首行所有的pick替换为s。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://hahahabula.github.io">Wan_haha</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://hahahabula.github.io/2024/11/09/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/">http://hahahabula.github.io/2024/11/09/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://hahahabula.github.io" target="_blank">Wan_haha的笔记本</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%B4%E8%B6%A3/">兴趣</a><a class="post-meta__tags" href="/tags/Vim/">Vim</a></div><div class="post-share"><div class="social-share" data-image="/img/04_02.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/11/09/S02-%E6%8E%8C%E6%8F%A1Vim%E5%9F%BA%E7%A1%80/" title="S02.掌握Vim基础"><img class="cover" src="/img/04_02.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">S02.掌握Vim基础</div></div><div class="info-2"><div class="info-item-1">1. Windows安装Vim 进入网址：download : vim online   点击上述链接进行下载 找到安装包双击运行，然后一系列的下一步直至安装完成。 找到安装目录下的vim. exe即可运行    2. Vim哲学使得Vim与其他文本编辑器不同的两个重要特性是：  模式编辑（modal editing） 操作符（operators）  2.1. 模式编辑传统的文本编辑器将会使得编写代码的时间耗费在移动，鼠标点击上而非输入文本。而在Vim中鼠标的移动都可以由指令完成，而不再需要鼠标。在普通模式（Normal mode）下，可以通过键入G的形式将指针移到文件的最后一行；而在插入模式(Insert mode)下键入G将会使得你的文件中多出一个G。  当你打开Vim后会默认进入普通模式，在普通模式下键入i会进入插入模式，在插入模式中按 ESC 会回到普通模式Vim除了普通模式和插入模式还存在其他的模式。  2.2. 操作符指令当你要从某个位置开始删除到行末的文字你可以输入 d$ 以完成操作，此处的操 $ 表示行末的意思，d...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/11/09/S02-%E6%8E%8C%E6%8F%A1Vim%E5%9F%BA%E7%A1%80/" title="S02.掌握Vim基础"><img class="cover" src="/img/04_02.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-09</div><div class="info-item-2">S02.掌握Vim基础</div></div><div class="info-2"><div class="info-item-1">1. Windows安装Vim 进入网址：download : vim online   点击上述链接进行下载 找到安装包双击运行，然后一系列的下一步直至安装完成。 找到安装目录下的vim. exe即可运行    2. Vim哲学使得Vim与其他文本编辑器不同的两个重要特性是：  模式编辑（modal editing） 操作符（operators）  2.1. 模式编辑传统的文本编辑器将会使得编写代码的时间耗费在移动，鼠标点击上而非输入文本。而在Vim中鼠标的移动都可以由指令完成，而不再需要鼠标。在普通模式（Normal mode）下，可以通过键入G的形式将指针移到文件的最后一行；而在插入模式(Insert mode)下键入G将会使得你的文件中多出一个G。  当你打开Vim后会默认进入普通模式，在普通模式下键入i会进入插入模式，在插入模式中按 ESC 会回到普通模式Vim除了普通模式和插入模式还存在其他的模式。  2.2. 操作符指令当你要从某个位置开始删除到行末的文字你可以输入 d$ 以完成操作，此处的操 $ 表示行末的意思，d...</div></div></div></a><a class="pagination-related" href="/2024/11/09/S01-%E5%AF%BC%E8%A8%80/" title="S01.导言"><img class="cover" src="/img/04_02.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-09</div><div class="info-item-2">S01.导言</div></div><div class="info-2"><div class="info-item-1"> 普通模式命令（例如删除 4 个文字 :d4w） 命令行命令（显示行数 :set nu）    学习经验  技巧需要耗费时间和努力 很多事情等到了你擅长后才会变得有趣    “Learning to drive a car takes effort. Is that a reason to keep driving your bicycle?No, you realize you need to invest time to learn a skill. Text editing isn’t different.You need to learn new commands and turn them into a habit.”   学什么——重要的那 20%，无需面面俱到 Pareto principle（二八准则） 动力——每日设定一个小任务必须完成（只要开始了就很难停下） Mini habits (将要做的事变为一种习惯且在做的时候是无感的) 收获——设定每天的目标一页、一段、一个技巧…… 每天都干 1% improvement per day (日积月累...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Wan_haha</div><div class="author-info-description">记录自己从研究生以来学习中所做的电子笔记</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hahahabula"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hahahabula" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m1853_gkkipdlk6d@aka.yeah.net" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/09/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/" title="S03.第一个Vim会话"><img src="/img/04_02.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S03.第一个Vim会话"/></a><div class="content"><a class="title" href="/2024/11/09/S03-%E7%AC%AC%E4%B8%80%E4%B8%AAVim%E4%BC%9A%E8%AF%9D/" title="S03.第一个Vim会话">S03.第一个Vim会话</a><time datetime="2024-11-09T15:16:17.000Z" title="发表于 2024-11-09 23:16:17">2024-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/09/S02-%E6%8E%8C%E6%8F%A1Vim%E5%9F%BA%E7%A1%80/" title="S02.掌握Vim基础"><img src="/img/04_02.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S02.掌握Vim基础"/></a><div class="content"><a class="title" href="/2024/11/09/S02-%E6%8E%8C%E6%8F%A1Vim%E5%9F%BA%E7%A1%80/" title="S02.掌握Vim基础">S02.掌握Vim基础</a><time datetime="2024-11-09T15:11:31.000Z" title="发表于 2024-11-09 23:11:31">2024-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/09/S01-%E5%AF%BC%E8%A8%80/" title="S01.导言"><img src="/img/04_02.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S01.导言"/></a><div class="content"><a class="title" href="/2024/11/09/S01-%E5%AF%BC%E8%A8%80/" title="S01.导言">S01.导言</a><time datetime="2024-11-09T14:58:28.000Z" title="发表于 2024-11-09 22:58:28">2024-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/07/S1-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%A2%9E%E9%95%BF%E5%BC%95%E6%93%8E-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" title="S1.互联网的增长引擎-推荐系统"><img src="/img/02_07.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S1.互联网的增长引擎-推荐系统"/></a><div class="content"><a class="title" href="/2024/11/07/S1-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%A2%9E%E9%95%BF%E5%BC%95%E6%93%8E-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" title="S1.互联网的增长引擎-推荐系统">S1.互联网的增长引擎-推荐系统</a><time datetime="2024-11-06T16:06:23.000Z" title="发表于 2024-11-07 00:06:23">2024-11-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/04/S1-%E5%BC%95%E8%A8%80/" title="S01.引言"><img src="/img/01_07.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S01.引言"/></a><div class="content"><a class="title" href="/2024/11/04/S1-%E5%BC%95%E8%A8%80/" title="S01.引言">S01.引言</a><time datetime="2024-11-04T10:25:05.000Z" title="发表于 2024-11-04 18:25:05">2024-11-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By Wan_haha</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">哈喽，欢迎来到我的 <a target="_blank" rel="noopener" href="https://butterfly.js.org/">博客</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
