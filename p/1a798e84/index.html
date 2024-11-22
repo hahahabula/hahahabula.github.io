@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>S1.互联网的增长引擎-推荐系统 | Wan_haha的笔记本</title><meta name="author" content="Wan_haha"><meta name="copyright" content="Wan_haha"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 为什么推荐系统是互联网的增长引擎  通过算法和模型实现增长的愿望   1.1. 推荐系统的作用和意义   用户角度：推荐系统可以解决“信息过载下”，用户高效地获得感兴趣信息的问题。  其不仅适用于互联网，但是互联网海量的信息是推荐系统应用的最佳场景 推荐系统与搜索系统的区别：推荐系统会利用历史信息猜测可能感兴趣的内容，而搜索系统更多地通过明确的“搜索词”来检索：解决推荐问题必须注意的基本场">
+<meta property="og:type" content="article">
+<meta property="og:title" content="S1.互联网的增长引擎-推荐系统">
+<meta property="og:url" content="http://hahahabula.github.io/p/1a798e84/index.html">
+<meta property="og:site_name" content="Wan_haha的笔记本">
+<meta property="og:description" content="1. 为什么推荐系统是互联网的增长引擎  通过算法和模型实现增长的愿望   1.1. 推荐系统的作用和意义   用户角度：推荐系统可以解决“信息过载下”，用户高效地获得感兴趣信息的问题。  其不仅适用于互联网，但是互联网海量的信息是推荐系统应用的最佳场景 推荐系统与搜索系统的区别：推荐系统会利用历史信息猜测可能感兴趣的内容，而搜索系统更多地通过明确的“搜索词”来检索：解决推荐问题必须注意的基本场">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://hahahabula.github.io/img/02_07.svg">
+<meta property="article:published_time" content="2024-11-06T16:06:23.000Z">
+<meta property="article:modified_time" content="2024-11-12T14:05:27.835Z">
+<meta property="article:author" content="Wan_haha">
+<meta property="article:tag" content="工作">
+<meta property="article:tag" content="推荐系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hahahabula.github.io/img/02_07.svg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://hahahabula.github.io/p/1a798e84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"这已经有","messageNext":"天未更新了，这篇文章的内容可能有部分已经过时。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"作者: Wan_haha","link":"链接: ","source":"来源: Wan_haha的笔记本","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'S1.互联网的增长引擎-推荐系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-12 22:05:27',
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/callout_blocks.css"><link rel="stylesheet" href="/css/font.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat|hide"></i><span> 影音</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/02_07.svg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/butterfly-icon.jpg" alt="Logo"><span class="site-name">Wan_haha的笔记本</span></a><a class="nav-page-title" href="/"><span class="site-name">S1.互联网的增长引擎-推荐系统</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat|hide"></i><span> 影音</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">S1.互联网的增长引擎-推荐系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-06T16:06:23.000Z" title="发表于 2024-11-07 00:06:23">2024-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-12T14:05:27.835Z" title="更新于 2024-11-12 22:05:27">2024-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/02%E5%B7%A5%E4%BD%9C/">02工作</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/02%E5%B7%A5%E4%BD%9C/07%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">07推荐系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="1-为什么推荐系统是互联网的增长引擎"><a class="markdownIt-Anchor" href="#1-为什么推荐系统是互联网的增长引擎"></a> 1. 为什么推荐系统是互联网的增长引擎</h1>
+<ul>
+<li>通过算法和模型实现<strong>增长</strong>的愿望</li>
+</ul>
+<h2 id="11-推荐系统的作用和意义"><a class="markdownIt-Anchor" href="#11-推荐系统的作用和意义"></a> 1.1. 推荐系统的作用和意义</h2>
+<ol>
+<li>
+<p>用户角度：推荐系统可以解决“信息过载下”，用户高效地获得感兴趣信息的问题。</p>
+<ul>
+<li>其不仅适用于互联网，但是互联网海量的信息是推荐系统应用的最佳场景</li>
+<li>推荐系统与搜索系统的区别：推荐系统会利用历史信息猜测可能感兴趣的内容，而搜索系统更多地通过明确的“搜索词”来检索：<font color="#ff0000">解决推荐问题必须注意的基本场景假设</font></li>
+</ul>
+</li>
+<li>
+<p>公司角度：设计推荐系统的最终目标是达成公司的商业目标、增加公司收益，这应是<font color="#ff0000">推荐工程师站在公司角度考虑问题的出发点</font>推荐系统是用户高效获取感兴趣内容的“引擎”更是互联网公司达成商业目标的“引擎”，二者是一个问题的两个维度。</p>
+</li>
+</ol>
+<h2 id="12-推荐系统与youtube的观看时长增长"><a class="markdownIt-Anchor" href="#12-推荐系统与youtube的观看时长增长"></a> 1.2. 推荐系统与YouTube的观看时长增长</h2>
+<ul>
+<li>推荐系统的“终极”优化目标包含两个维度：
+<ol>
+<li>用户体验的优化</li>
+<li>满足公司的商业利益</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>UGC(Uer Generated Content)：用户生成内容</p>
+</blockquote>
+<p>YouTube的主要收入来源是广告收入，而其商业利益建立在用户观看时长的增长之上。其注重的是用户观看时长，而非传统推荐系统看重的“点击率”。</p>
+<h3 id="121-推荐系统与电商网站的收入增长"><a class="markdownIt-Anchor" href="#121-推荐系统与电商网站的收入增长"></a> 1.2.1. 推荐系统与电商网站的收入增长</h3>
+<p>在电商平台，推荐系统为用户推荐的商品是否合适将直接影响用户的购买转化率。推荐系统几乎成为驱动互联网所有应用领域的核心技术系统，当之无愧地成为当今助推互联网增长的强劲引擎。</p>
+<hr />
+<h1 id="2-推荐系统架构"><a class="markdownIt-Anchor" href="#2-推荐系统架构"></a> 2. 推荐系统架构</h1>
+<ul>
+<li>互联网企业的核心需求是“增长”，而推荐系统正处于“增长引擎”的核心位置<br />
+<strong>推荐系统是重要的</strong></li>
+<li>推荐系统要解决的“用户痛点”是用户如何在“信息过载”的情况下高效地获取感兴趣的信息。<br />
+<strong>推荐系统要处理的是“人”和“信息”的关系</strong></li>
+</ul>
+<h2 id="21-推荐系统的逻辑框架"><a class="markdownIt-Anchor" href="#21-推荐系统的逻辑框架"></a> 2.1. 推荐系统的逻辑框架</h2>
+<ul>
+<li>用户U(User)</li>
+<li>特定场景C(context)</li>
+<li>候选物品I(item)</li>
+</ul>
+<p>针对海量的“物品”信息，构建一个函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>U</mi><mo separator="true">,</mo><mi>I</mi><mo separator="true">,</mo><mi>C</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(U,I,C)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mclose">)</span></span></span></span>预测用户对于候选物品I的喜好程度，在根据喜好程度对所有候选物品进行排序，生成推荐列表的问题。</p>
+<img src="/img/S1-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%A2%9E%E9%95%BF%E5%BC%95%E6%93%8E-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/image-20241107111043288.png" alt="image-20241107111043288" style="zoom: 50%;" />
+<h2 id="22-推荐系统的技术架构"><a class="markdownIt-Anchor" href="#22-推荐系统的技术架构"></a> 2.2. 推荐系统的技术架构</h2>
+<p>工程师需要解决的两类问题：</p>
+<ul>
+<li>数据和信息相关问题，即“用户信息”“物品信息”“场景信息”分别是什么？如何存储、更新和处理？<br />
+逐步发展为推荐系统中融合了<font color="#ff0000">数据离线批处理</font>、<font color="#ff0000">实时流处理</font>的数据流框架</li>
+</ul>
+<img src="/img/S1-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%A2%9E%E9%95%BF%E5%BC%95%E6%93%8E-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/image-20241107112848596.png" alt="image-20241107112848596" style="zoom: 50%;" />
+<ul>
+<li>
+<p>推荐系统算法和模型相关的问题，即推荐模型如何训练、如何预测、如何达成更好的推荐效果？<br />
+进一步细化为推荐系统中集<font color="#ff0000">训练</font>、<font color="#ff0000">评估</font>、<font color="#ff0000">部署</font>、<font color="#ff0000">线上推断</font>为一体的模型框架</p>
+<p>负责数据收集和处理的三个平台按实时性的强弱排序：<br />
+客户&gt;流处理&gt;大数据<br />
+按海量处理数据能力：<br />
+客户&lt;流处理&lt;大数据</p>
+  <img src="/img/S1-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%A2%9E%E9%95%BF%E5%BC%95%E6%93%8E-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/image-20241107114707051.png" alt="image-20241107114707051" style="zoom:50%;" />
+</li>
+</ul>
+<h2 id="23-推荐系统的数据部分"><a class="markdownIt-Anchor" href="#23-推荐系统的数据部分"></a> 2.3. 推荐系统的数据部分</h2>
+<p>加工后的数据出口有</p>
+<ul>
+<li>生成推荐模型的样本数据，用于算法模型的训练和评估</li>
+<li>生成推荐模型服务所需的“特征”，用于推荐系统的线上推断</li>
+<li>生成系统监控、商业智能(Business Intelligence, BI)系统所需的统计型数据</li>
+</ul>
+<h2 id="24-推荐系统的模型部分"><a class="markdownIt-Anchor" href="#24-推荐系统的模型部分"></a> 2.4. 推荐系统的模型部分</h2>
+<ul>
+<li>
+<p>模型部分是推荐系统的主体</p>
+</li>
+<li>
+<p>模型的结构一般由“召回层”“排序层”“补充策略与算法层”组成</p>
+<ol>
+<li>
+<p><font color="#8064a2">召回层</font>：一般利用高效的召回规则、算法或简单的模型，快速从海量的候选集中召回用户可能感兴趣的物品</p>
+</li>
+<li>
+<p><font color="#8064a2">排序层</font>：利用排序模型对初筛的候选集进行精排序</p>
+</li>
+<li>
+<p><font color="#8064a2">补充策略与算法层</font>：也被称为“再排序层”，可以在将推荐列表返回用户之前，为兼顾结构的“多样性”“流行度”“新鲜度”等指标，结合一些补充的策略和算法对推荐列表进行一定的调整，最终形成用户可见的推荐列表。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>模型的训练方法可分为：</p>
+<ul>
+<li>
+<p><font color="#9bbb59">离线训练</font>：可以利用全量样本和特征，使模型逼近全局最优点</p>
+</li>
+<li>
+<p><font color="#9bbb59">在线更新</font>：准实时地“消化”新的数据样本，更快地反映新的数据变化趋势，满足模型实时性的需求</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="25-深度学习对推荐系统的革命性贡献"><a class="markdownIt-Anchor" href="#25-深度学习对推荐系统的革命性贡献"></a> 2.5. 深度学习对推荐系统的革命性贡献</h2>
+<p>深度学习模型对数据模式的拟合能力和对特征组合的挖掘能力更强。</p>
+<h2 id="26-把握整体补充细节"><a class="markdownIt-Anchor" href="#26-把握整体补充细节"></a> 2.6. 把握整体，补充细节</h2>
+<p>推荐系统的整体技术架构及其对应的技术细节是异常复杂的，它不仅要求从业者有较深厚的机器学习知识、推荐模型相关的理论知识，还对从业者的工程能力和针对不同技术方案进行权衡，做出最优选择的“业务嗅觉”有着很高的要求。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://hahahabula.github.io">Wan_haha</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://hahahabula.github.io/p/1a798e84/">http://hahahabula.github.io/p/1a798e84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://hahahabula.github.io" target="_blank">Wan_haha的笔记本</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B7%A5%E4%BD%9C/">工作</a><a class="post-meta__tags" href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">推荐系统</a></div><div class="post-share"><div class="social-share" data-image="/img/02_07.svg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/p/7ccacea6/" title="S01.引言"><img class="cover" src="/img/01_07.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">S01.引言</div></div><div class="info-2"><div class="info-item-1"> 1. 基本框架  方向：dkd_kdk​ 步长：αk\alpha_kαk​ 更新迭代点：xk+1=xk+αkdkx_{k+1}=x_k+\alpha_k d_kxk+1​=xk​+αk​dk​   2. 优化问题的数学形式 min⁡f(x)s.t.ci(x)=0,i=1,…,meci(x)≥0,i=me+1,…,n\begin{matrix} \\ \min f(x) \\ s.t. c_{i}(x)=0,i=1,\ldots,m_e \\c_i(x)\ge 0,i=m_{e}+1,\ldots,n \end{matrix} minf(x)s.t.ci​(x)=0,i=1,…,me​ci​(x)≥0,i=me​+1,…,n​  3. 范数 如果向量x∈Rnx\in...</div></div></div></a><a class="pagination-related" href="/p/86b0c340/" title="S01.导言"><img class="cover" src="/img/04_02.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">S01.导言</div></div><div class="info-2"><div class="info-item-1"> 普通模式命令（例如删除 4 个文字 :d4w） 命令行命令（显示行数 :set nu）    学习经验  技巧需要耗费时间和努力 很多事情等到了你擅长后才会变得有趣    “Learning to drive a car takes effort. Is that a reason to keep driving your bicycle? No, you realize you need to invest time to learn a skill. Text editing isn’t different. You need to learn new commands and turn them into a habit.”   学什么——重要的那 20%，无需面面俱到 Pareto principle（二八准则） 动力——每日设定一个小任务必须完成（只要开始了就很难停下） Mini habits (将要做的事变为一种习惯且在做的时候是无感的) 收获——设定每天的目标一页、一段、一个技巧… 每天都干 1% improvement per day (日积月累...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Wan_haha</div><div class="author-info-description">记录自己从研究生以来学习中所做的电子笔记</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hahahabula"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hahahabula" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:m1853_gkkipdlk6d@aka.yeah.net" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%98%AF%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%A2%9E%E9%95%BF%E5%BC%95%E6%93%8E"><span class="toc-text"> 1. 为什么推荐系统是互联网的增长引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8C%E6%84%8F%E4%B9%89"><span class="toc-text"> 1.1. 推荐系统的作用和意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8Eyoutube%E7%9A%84%E8%A7%82%E7%9C%8B%E6%97%B6%E9%95%BF%E5%A2%9E%E9%95%BF"><span class="toc-text"> 1.2. 推荐系统与YouTube的观看时长增长</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#121-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%8E%E7%94%B5%E5%95%86%E7%BD%91%E7%AB%99%E7%9A%84%E6%94%B6%E5%85%A5%E5%A2%9E%E9%95%BF"><span class="toc-text"> 1.2.1. 推荐系统与电商网站的收入增长</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-text"> 2. 推荐系统架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E6%A1%86%E6%9E%B6"><span class="toc-text"> 2.1. 推荐系统的逻辑框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><span class="toc-text"> 2.2. 推荐系统的技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E9%83%A8%E5%88%86"><span class="toc-text"> 2.3. 推荐系统的数据部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A8%A1%E5%9E%8B%E9%83%A8%E5%88%86"><span class="toc-text"> 2.4. 推荐系统的模型部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AF%B9%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%9D%A9%E5%91%BD%E6%80%A7%E8%B4%A1%E7%8C%AE"><span class="toc-text"> 2.5. 深度学习对推荐系统的革命性贡献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E6%8A%8A%E6%8F%A1%E6%95%B4%E4%BD%93%E8%A1%A5%E5%85%85%E7%BB%86%E8%8A%82"><span class="toc-text"> 2.6. 把握整体，补充细节</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/p/d5e1a83a/" title="S05.文件操作"><img src="/img/04_02.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S05.文件操作"/></a><div class="content"><a class="title" href="/p/d5e1a83a/" title="S05.文件操作">S05.文件操作</a><time datetime="2024-11-22T01:01:50.000Z" title="发表于 2024-11-22 09:01:50">2024-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/be042798/" title="S01.矩阵运算_1基础概念"><img src="/img/01_07.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S01.矩阵运算_1基础概念"/></a><div class="content"><a class="title" href="/p/be042798/" title="S01.矩阵运算_1基础概念">S01.矩阵运算_1基础概念</a><time datetime="2024-11-14T02:15:23.000Z" title="发表于 2024-11-14 10:15:23">2024-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/8fe72037/" title="S04.Vim中的概念"><img src="/img/04_02.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S04.Vim中的概念"/></a><div class="content"><a class="title" href="/p/8fe72037/" title="S04.Vim中的概念">S04.Vim中的概念</a><time datetime="2024-11-11T15:32:39.000Z" title="发表于 2024-11-11 23:32:39">2024-11-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/f47c409/" title="S03.第一个Vim会话"><img src="/img/04_02.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S03.第一个Vim会话"/></a><div class="content"><a class="title" href="/p/f47c409/" title="S03.第一个Vim会话">S03.第一个Vim会话</a><time datetime="2024-11-09T15:16:17.000Z" title="发表于 2024-11-09 23:16:17">2024-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/6246792a/" title="S02.掌握Vim基础"><img src="/img/04_02.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="S02.掌握Vim基础"/></a><div class="content"><a class="title" href="/p/6246792a/" title="S02.掌握Vim基础">S02.掌握Vim基础</a><time datetime="2024-11-09T15:11:31.000Z" title="发表于 2024-11-09 23:11:31">2024-11-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By Wan_haha</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">哈喽，欢迎来到我的 <a target="_blank" rel="noopener" href="https://butterfly.js.org/">博客</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
