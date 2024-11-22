@@ -17,7 +17,7 @@
     --callout-info: 0, 184, 212;
     --callout-tip: 0, 191, 165;
     --callout-success: 8, 185, 78;
-    --callout-question: 224, 172, 0;
+    --callout-lem: 224, 172, 0;
     --callout-warning: 255, 145, 0;
     --callout-failure: 255, 82, 82;
     --callout-danger: 255, 23, 68;
@@ -133,12 +133,12 @@
     background-color: rgba(var(--callout-success), var(--callout-title-bg-opacity))
 }
 
-.custom-callout.faq, .custom-callout.help, .custom-callout.question {
-    border-color: rgba(var(--callout-question), var(--callout-border-opacity))
+.custom-callout.faq, .custom-callout.help, .custom-callout.lem {
+    border-color: rgba(var(--callout-lem), var(--callout-border-opacity))
 }
 
-.custom-callout.faq > summary, .custom-callout.help > summary, .custom-callout.question > summary {
-    background-color: rgba(var(--callout-question), var(--callout-title-bg-opacity))
+.custom-callout.faq > summary, .custom-callout.help > summary, .custom-callout.lem > summary {
+    background-color: rgba(var(--callout-lem), var(--callout-title-bg-opacity))
 }
 
 .custom-callout.attention, .custom-callout.caution, .custom-callout.warning {
@@ -232,7 +232,7 @@
     content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%2300C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg>')
 }
 
-.custom-callout.faq > .callout-title > .callout-icon:before, .custom-callout.help > .callout-title > .callout-icon:before, .custom-callout.question > .callout-title > .callout-icon:before {
+.custom-callout.faq > .callout-title > .callout-icon:before, .custom-callout.help > .callout-title > .callout-icon:before, .custom-callout.lem > .callout-title > .callout-icon:before {
     content: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23E0AC00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-help-circle"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>')
 }
 
@@ -301,10 +301,10 @@
     color: rgba(var(--callout-success));
 }
 
-.custom-callout.question> .callout-title > .callout-icon + div ,
+.custom-callout.lem> .callout-title > .callout-icon + div ,
 .custom-callout.faq> .callout-title > .callout-icon + div,
 .custom-callout.help> .callout-title > .callout-icon + div{
-    color: rgba(var(--callout-question));
+    color: rgba(var(--callout-lem));
 }
 
 .custom-callout.attention> .callout-title > .callout-icon + div ,
